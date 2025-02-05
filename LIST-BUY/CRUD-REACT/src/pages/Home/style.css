@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,html{
+  background-color: darkgray;
+  height: 90%;
+  width: 100%;
+}
+
+.inputName , .inputEmail{
+  width: 90%;
+}
