@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react'
+import List from "../../components/List/"
 import { v4 } from 'uuid';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './style.css'
-//const [users, setUsers] = useState([]) ALTERAR O VALOR DENTRO DA VARIAVEL
-//const input = useRef() PEGAR O INPUT PARA MANIPULAÇÃO (COLOCAR REF=NOME DA CONST DENTRO DO INPUT)
+
 
 function Home() {
   const inputList = useRef(0)
@@ -21,7 +21,7 @@ function Home() {
   }
 
   function btnDelete(id) {
-    setProducts(products.filter((product)=> product.id !== id))
+    setProducts(products.filter((product) => product.id !== id))
   }
   return (
     <div>
@@ -32,10 +32,7 @@ function Home() {
       </div>
 
       {products.map((product) => (
-        <div key={product.id}>
-          <p>{product.name}</p>
-          <button type='button' onClick={() => btnDelete(product.id)}>XX</button>
-        </div>
+        <List List={product} RemoveTask={btnDelete}/>
       ))}
 
 

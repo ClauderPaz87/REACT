@@ -3,6 +3,8 @@ import { v4 } from 'uuid';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './style.css'
 import api from '../../services/api'
+import Edit from '../../components/Edit'
+import Add from '../../components/Add'
 
 function App() {
   const inputTask = useRef(null)
@@ -117,32 +119,9 @@ function App() {
         </div>
       ))}
 
-      <div class="input-group row d-flex justify-content-center mt-5">
-        <div className='col-8 ms-5'>
-          <input type="text" class="form-control ms-4 inputTask" onKeyDown={btnAddTaskKey} ref={inputTask} placeholder="Adicione uma tarefa" aria-describedby="button-addon2" />
-        </div>
-        <div className='col-2'>
-          <button class="btn btn-outline-secondary ms-4 btnAdd" onClick={btnAddTask} type="button" id="button-addon2">Adicionar</button>
-        </div>
-      </div>
+      <Add inputAdd={inputTask} addBtn={btnAddTask} addKey={btnAddTaskKey}/>
 
-      <dialog ref={dialog} className='position-absolute top-50 start-50 translate-middle w-50 h-50'>
-        <div>
-          <h1 className='text-center'>Editar Tarefa</h1>
-        </div>
-        <div className='d-flex justify-content-center mt-3'>
-          <input className='p-1 w-50' ref={inputEdit} placeholder='edite sua tarefa' type="text" />
-        </div>
-        <div className='row w-75 mt-3'>
-          <div className='col-3'>
-            <button type="button" onClick={btnSave} class="btn btn-success">Salvar</button>
-          </div>
-          <div className='col-4'>
-            <button type="button" onClick={btnCancel} class="btn btn-danger">Cancelar</button>
-          </div>
-
-        </div>
-      </dialog>
+      <Edit save={btnSave} cancel={btnCancel} dialog={dialog} input={inputEdit}/>
 
     </div>
 
