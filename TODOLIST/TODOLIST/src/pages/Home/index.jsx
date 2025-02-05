@@ -2,50 +2,84 @@ import { useEffect, useState, useRef } from 'react'
 import { v4 } from 'uuid';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './style.css'
+import api from '../../services/api'
 
 function App() {
   const inputTask = useRef(null)
   const inputEdit = useRef(null)
   const dialog = useRef(null)
-  const [task,setTask] = useState([])
+  const [task, setTask] = useState([])
   const [newTask, setNewTask] = useState([])
 
-  const btnAddTask = () =>{
-    const newItem ={
+  async function getTask(){
+    const taskFromApi =  await api.get('/users')
+    setTask(taskFromApi.data)
+    console.log(task)
+  }
+
+  async function createTask(){
+    await api.post('/users', {
+      name: inputTask.current.value
+    })
+    getTask()
+  }
+
+  useEffect(()=>{
+    getTask()
+  },[])
+
+  const btnAddTaskKey = (event)=>{
+    if(event.key === 'Enter'){
+      const newItem = {
+        id: v4(),
+        value: inputTask.current.value,
+        checked: false
+      }
+  
+      setTask([...task, newItem])
+      inputTask.current.value = ''
+    }
+  }
+
+  const btnAddTask = () => {
+    const newItem = {
       id: v4(),
       value: inputTask.current.value,
       checked: false
     }
-    
+
     setTask([...task, newItem])
     inputTask.current.value = ''
+    
   }
 
-  const btnCheck = ()=>{
-
+  const btnCheck = (id) => {
+    setTask(task.map(p =>
+      p.id === id ? { ...p, checked: !p.checked } : p
+    ))
   }
 
-  const btnDelete = (id)=>{
-    setTask(task.filter((p)=>
+  const btnDelete = (id) => {
+    setTask(task.filter((p) =>
       p.id !== id
     ))
   }
 
-  const btnEdit = (task)=>{
+  const btnEdit = (task) => {
     setNewTask(task)
     dialog.current.showModal()
   }
 
-  const btnSave = () =>{   
-    console.log(newTask.id) 
+  const btnSave = () => {
+    console.log(newTask.id)
     setTask(task.map(p =>
-      p.id === newTask.id ? {...p, value: inputEdit.current.value} : p
+      p.id === newTask.id ? { ...p, value: inputEdit.current.value } : p
     ))
 
     dialog.current.close()
   }
 
-  const btnCancel = () =>{
+  const btnCancel = () => {
     dialog.current.close()
   }
 
@@ -72,7 +106,7 @@ function App() {
             </div>
 
             <div className='col-1 d-flex align-items-center'>
-              <button className='w-50' onClick={() => btnEdit(p,p.id)} type='button'>E</button>
+              <button className='w-50' onClick={() => btnEdit(p, p.id)} type='button'>E</button>
             </div>
 
             <div className='col-1 d-flex align-items-center'>
@@ -85,7 +119,7 @@ function App() {
 
       <div class="input-group row d-flex justify-content-center mt-5">
         <div className='col-8 ms-5'>
-          <input type="text" class="form-control ms-4 inputTask" ref={inputTask} placeholder="Adicione uma tarefa" aria-describedby="button-addon2" />
+          <input type="text" class="form-control ms-4 inputTask" onKeyDown={btnAddTaskKey} ref={inputTask} placeholder="Adicione uma tarefa" aria-describedby="button-addon2" />
         </div>
         <div className='col-2'>
           <button class="btn btn-outline-secondary ms-4 btnAdd" onClick={btnAddTask} type="button" id="button-addon2">Adicionar</button>
