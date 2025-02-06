@@ -5,6 +5,7 @@ import './style.css'
 import api from '../../services/api'
 import Edit from '../../components/Edit'
 import Add from '../../components/Add'
+import Task from '../../components/Task'
 
 function App() {
   const inputTask = useRef(null)
@@ -43,7 +44,7 @@ function App() {
     }
   }
 
-  const btnAddTask = () => {
+  const btnAddTask = (value,checked) => {
     const newItem = {
       id: v4(),
       value: inputTask.current.value,
@@ -96,27 +97,7 @@ function App() {
       </div>
 
       {task.map((p) => (
-        <div className='d-flex justify-content-center'>
-          <div className='row mt-5 divTask shadow w-75 rounded-2 p-1' key={p.id}>
-
-            <div className='col-2 p-2 d-flex align-items-center'>
-              <input className='w-25 inputCheckbox' onChange={() => btnCheck(p.id)} checked={p.checked} type="checkbox" />
-            </div>
-
-            <div className='col-8 d-flex align-items-center'>
-              <p className={`mb-0 fw-bolder fs-5 ${p.checked ? 'text-decoration-line-through' : ''}`}>{p.value}</p>
-            </div>
-
-            <div className='col-1 d-flex align-items-center'>
-              <button className='w-50' onClick={() => btnEdit(p, p.id)} type='button'>E</button>
-            </div>
-
-            <div className='col-1 d-flex align-items-center'>
-              <button className='w-50' onClick={() => btnDelete(p.id)} type='button'>X</button>
-            </div>
-
-          </div>
-        </div>
+        <Task task={p} edit={btnEdit} check={btnCheck} exclused={btnDelete} />
       ))}
 
       <Add inputAdd={inputTask} addBtn={btnAddTask} addKey={btnAddTaskKey}/>

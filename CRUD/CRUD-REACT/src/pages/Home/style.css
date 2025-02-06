@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+.divHeader {
+    background-color: #f4ce0f;
+    color: #0f0f0b;
+    height: 60px;
+}
+
+.divSection {
+    background-color: white;
+    height: 85vh;
+}
+
+.divP{
+    background-color: #f4ce0f;
+    color: #0f0f0b;
+    height: 60px;
+}
