@@ -1,6 +1,6 @@
 import React, { useRef,useState,useEffect } from 'react'
 
-const DialogEdit = ({ dialogEdit, addUser, user, editUser}) => {
+const DialogEdit = ({ dialogEdit, editUser}) => {
     const name = useRef(0)
     const email = useRef(0)
     const phone = useRef(0)
