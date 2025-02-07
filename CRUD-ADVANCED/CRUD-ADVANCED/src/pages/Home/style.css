@@ -1,0 +1,54 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,html{
+  width: 100vw;
+  height: 90vh;
+  background-color: #f0e004;
+}
+
+.formInputs{
+  height: 15vh;
+}
+
+.tableUser{
+  height: 65vh;
+}
+
+.iconsTable{
+  width: 100px;
+}
+
+.inputName:focus{
+  border: none;
+  outline: none;
+
+}
+
+.inputName{
+  width: 90%;
+}
+
+.inputEmail:focus{
+  border: none;
+  outline: none;
+
+}
+
+.inputEmail{
+  width: 90%;
+}
+
+.inputPhone:focus{
+  border: none;
+  outline: none;
+
+}
+
+.inputPhone{
+  width: 90%;
+}
+
