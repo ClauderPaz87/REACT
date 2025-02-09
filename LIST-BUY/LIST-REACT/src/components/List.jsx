@@ -1,11 +1,11 @@
 import React from 'react'
 
-const List = ({List, RemoveTask}) => {
+const List = ({pro,btn}) => {
 
     return (
         <div>
-            <p>{List.name}</p>
-            <button type='button' onClick={() => RemoveTask(List.id)}>XX</button>
+            <p>{pro.text}</p>
+            <button onClick={()=>btn(pro.id)} type='button'>XX</button>
         </div>
     )
 }

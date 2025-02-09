@@ -1,40 +1,45 @@
-import { useEffect, useState, useRef } from 'react'
+import { useReducer, useRef } from 'react'
 import List from "../../components/List/"
 import { v4 } from 'uuid';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './style.css'
 
-
+const reducer = (state,action)=>{
+  switch(action.type){
+    case 'productText':
+      return {...state, product: [...state.product, {id:v4() , text: action.text}]}
+    case 'deleteProduct':
+      return {...state, product: state.product.filter((p)=> p.id !== action.id)}
+  }
+}
 function Home() {
-  const inputList = useRef(0)
-  const [products, setProducts] = useState([])
+  const inputRef = useRef('')
 
-  function btnList() {
-
-    setProducts([
-      ...products,
-      {
-        name: inputList.current.value,
-        id: v4()
-      }
-    ])
+  const [state,dispatch] = useReducer(reducer,{
+    product : []
+  })
+   
+  const btnAdd = ()=>{
+    dispatch({type: 'productText', text:inputRef.current.value})
   }
 
-  function btnDelete(id) {
-    setProducts(products.filter((product) => product.id !== id))
+  const btnDelete = (ide)=>{
+    dispatch({type: 'deleteProduct', id: ide})
   }
+
   return (
     <div>
 
       <div>
         <h1>Lista de Compra</h1>
-        <p><input type="text" ref={inputList} /> <button onClick={btnList} type='button'>Adicionar</button></p>
+        <p><input type="text" ref={inputRef} /> <button onClick={btnAdd} type='button'>Adicionar</button></p>
       </div>
 
-      {products.map((product) => (
-        <List List={product} RemoveTask={btnDelete}/>
-      ))}
+      {state.product.map((p)=>
+        <List pro={p} btn={btnDelete} />
+      )}
 
+      
 
     </div>
 
