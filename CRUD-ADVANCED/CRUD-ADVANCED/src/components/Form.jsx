@@ -1,27 +1,14 @@
 import { useRef } from "react"
+import { v4 } from "uuid"
 
-const Form = ({addUser}) => {
+const Form = ({dispatch}) => {
     const inputName = useRef('')
     const inputEmail = useRef('')
     const inputPhone = useRef('')
 
-    const btnSave = ()=>{
-        if(!inputName.current.value ||
-            !inputEmail.current.value ||
-            !inputPhone.current.value
-        ) return
-        
-        addUser(
-            inputName.current.value,
-            inputEmail.current.value,
-            inputPhone.current.value
-        )
-
-        inputName.current.value = ''
-        inputEmail.current.value = ''
-        inputPhone.current.value = ''
-
-
+    const btnAdd = ()=>{
+        if(!inputName.current.value || !inputEmail.current.value || !inputPhone.current.value ) return
+        dispatch({type:'addValues', id:v4(), name:inputName.current.value , email:inputEmail.current.value , phone:inputPhone.current.value})
     }
 
     return (
@@ -45,7 +32,7 @@ const Form = ({addUser}) => {
                 </div>
 
                 <div className='col-1 mt-4 ms-4'>
-                    <button onClick={btnSave} type="button" class="btn btn-primary">Salvar</button>
+                    <button onClick={btnAdd} type="button" class="btn btn-primary">Salvar</button>
                 </div>
 
             </div>

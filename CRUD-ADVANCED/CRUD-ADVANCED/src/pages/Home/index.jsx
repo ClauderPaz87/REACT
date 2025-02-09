@@ -1,39 +1,39 @@
-import { useState, useRef } from 'react'
+import { useReducer, useRef } from 'react'
+
 import Form from '../../components/form';
 import Table from '../../components/Table';
 import Dialog from '../../components/Dialog';
+
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { v4 } from 'uuid';
 import './style.css'
 
+const reducer = (state,action)=>{
+  switch(action.type){
+    case 'addValues':
+      return {...state, users: [...state.users, {id:action.id, name:action.name, email:action.email, phone:action.phone}]}
+    
+    case 'deleteUser':
+      return {...state, users: state.users.filter((user)=> user.id !== action.id)}
+
+    case 'editUsers':
+      return {...state, users: state.users.map((user) => 
+        user.id === action.id ? {id:action.id , name:action.name , email:action.email , phone:action.phone} : user)}
+    
+    case 'addEditValues':
+      return {...state, usersEdit: action.userEd}
+    
+  }    
+}
+
 function App() {
-  const [users, setUsers] = useState([])
-  const [newUser,setNewUsers] = useState({})
+
   const dialog = useRef('')
 
-  const addUser = (name, email, phone) => {
-    const user = [
-      ...users,
-      {
-        id: v4(),
-        name,
-        email,
-        phone
-      }
-    ]
-
-    setUsers(user)
-  }
-
-  const addNewUser = (user)=>{
-    setNewUsers(user)
-  }
-
-  const editUser = (name,email,phone)=>{
-    setUsers(users.map(user =>
-      user.id === newUser.id ? {name,email,phone} : user
-    ))
-  }
+  const [state,dispatch] = useReducer(reducer,{
+    users: [],
+    usersEdit : {}
+  })
 
   return (
 
@@ -44,15 +44,15 @@ function App() {
       </div>
 
       <div className='d-flex justify-content-center'>
-        <Form addUser={addUser}/>
+        <Form dispatch={dispatch}/>
       </div>
 
       <div className='d-flex justify-content-center'>
-        <Table addNewUser={addNewUser} users={users} setUsers={setUsers} dialog={dialog} />
+          <Table dialog={dialog} dispatch={dispatch} user={state.users}/>
       </div>
 
-      <dialog className='position-absolute top-50 start-50 translate-middle w-50 h-50 border-0 shadow rounded-2' ref={dialog}>
-        <Dialog  dialog={dialog} editUser={editUser} newUser={newUser} />
+      <dialog ref={dialog} className='position-absolute top-50 start-50 translate-middle w-50 h-50 border-0 shadow rounded-2'>
+        <Dialog usersEdit={state.usersEdit} dispatch={dispatch} dialog={dialog} />
       </dialog>
 
     </div>

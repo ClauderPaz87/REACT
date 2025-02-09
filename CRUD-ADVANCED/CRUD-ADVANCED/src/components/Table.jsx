@@ -1,17 +1,15 @@
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const Table = ({ users , setUsers , dialog, addNewUser}) => {
+const Table = ({ user , dispatch , dialog }) => {
 
-    const btnDelete = (id)=>{
-        setUsers(
-            users.filter(user => user.id !== id )
-        )
+    const btnEdit = (u)=>{
+        dispatch({type:'addEditValues' , userEd:u})
+        dialog.current.showModal()
     }
 
-    const btnEdit = (user)=>{
-        addNewUser(user)
-        dialog.current.showModal()
+    const btnDelete = (idr)=>{
+        dispatch({type:'deleteUser', id:idr})
     }
 
     return (
@@ -28,19 +26,16 @@ const Table = ({ users , setUsers , dialog, addNewUser}) => {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {users
-                        .sort((a,b) =>
-                            a.name ? a.name.localeCompare(b.name) : a
-                        )
-                        .map(user =>
-                            <tr  key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
+                        {user
+                        .sort((a,b)=> a.name ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
+                        .map((u) =>
+                            <tr key={u.id}>
+                                <td>{u.name}</td>
+                                <td>{u.email}</td>
+                                <td>{u.phone}</td>
                                 <td className="d-flex justify-content-center">
-                                    <button onClick={()=> btnEdit(user)} className="border-0 bg-transparent me-2"><FaRegEdit /></button>
-                                    <button onClick={()=> btnDelete(user.id)} className="border-0 bg-transparent"><MdDelete /></button>
+                                    <button onClick={()=>btnEdit(u)} className="border-0 bg-transparent me-2"><FaRegEdit /></button>
+                                    <button onClick={()=> btnDelete(u.id)} className="border-0 bg-transparent"><MdDelete /></button>
                                 </td>
                             </tr>
                         )}
