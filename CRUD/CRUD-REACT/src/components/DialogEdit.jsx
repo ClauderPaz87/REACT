@@ -1,24 +1,35 @@
 import React, { useRef,useState,useEffect } from 'react'
 
-const DialogEdit = ({ dialogEdit, editUser}) => {
-    const name = useRef(0)
-    const email = useRef(0)
-    const phone = useRef(0)
-    const city = useRef(0)
-    
-    const btnSave = () => {
+const DialogEdit = ({editUsers , dialogEdit , dispatch , newUser}) => {
+    const name = useRef('')
+    const email = useRef('')
+    const phone = useRef('')
+    const city = useRef('')
+
+    const btnSave = ()=>{
         if(!name.current.value || !email.current.value || !phone.current.value || !city.current.value) return
-        editUser(
+        dispatch({type:'editUsers', id:newUser.id, name:name.current.value, email:email.current.value, phone:phone.current.value, city:city.current.value })
+
+        editUsers(
+            newUser.id,
             name.current.value,
             email.current.value,
             phone.current.value,
             city.current.value
-        );
-        dialogEdit.current.close();
-    };
-    
 
-    const btnCancelEdit = () => {
+        )
+        dialogEdit.current.close()
+    }   
+
+    useEffect(() => {
+        name.current.value = newUser.name
+        email.current.value = newUser.email
+        phone.current.value = newUser.phone
+        city.current.value = newUser.city
+
+    }, [newUser])
+
+    const btnCancel = ()=>{
         dialogEdit.current.close()
     }
 
@@ -31,11 +42,11 @@ const DialogEdit = ({ dialogEdit, editUser}) => {
             <div className='row w-100 d-flex justify-content-center'>
 
                 <div className='col-5 mt-4'>
-                    <input className='p-2 w-100 border border-secondary rounded-2' ref={name} placeholder='Nome do Cliente' type="text" />
+                    <input ref={name} className='p-2 w-100 border border-secondary rounded-2' placeholder='Nome do Cliente' type="text" />
                 </div>
 
                 <div className='col-5 mt-4'>
-                    <input className='p-2 w-100 border border-secondary rounded-2' ref={email} placeholder='Email do Cliente' type="email" />
+                    <input ref={email} className='p-2 w-100 border border-secondary rounded-2'  placeholder='Email do Cliente' type="email" />
                 </div>
 
             </div>
@@ -43,11 +54,11 @@ const DialogEdit = ({ dialogEdit, editUser}) => {
             <div className='row w-100 d-flex justify-content-center'>
 
                 <div className='col-5 mt-5'>
-                    <input className='p-2 w-100 border border-secondary rounded-2' ref={phone} placeholder='Celular do Cliente' type="number" />
+                    <input ref={phone} className='p-2 w-100 border border-secondary rounded-2'  placeholder='Celular do Cliente' type="number" />
                 </div>
 
                 <div className='col-5 mt-5'>
-                    <input className='p-2 w-100 border border-secondary rounded-2' ref={city} placeholder='Cidade do Cliente' type="text" />
+                    <input ref={city} className='p-2 w-100 border border-secondary rounded-2' placeholder='Cidade do Cliente' type="text" />
                 </div>
 
             </div>
@@ -59,7 +70,7 @@ const DialogEdit = ({ dialogEdit, editUser}) => {
                 </div>
 
                 <div className="col-1 me-5">
-                    <button type="button" onClick={btnCancelEdit} class="btn btn-info">Cancelar</button>
+                    <button onClick={btnCancel} type="button" class="btn btn-info">Cancelar</button>
                 </div>
 
             </div>

@@ -1,51 +1,84 @@
-import { useState, useRef, useEffect } from 'react'
+import { useReducer, useRef, useEffect } from 'react'
+
 import Header from '../../components/Header';
 import Table from '../../components/Table';
 import Dialog from '../../components/Dialog';
 import DialogEdit from '../../components/DialogEdit';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import api from '../../services/api';
+
 import { v4 } from 'uuid';
 import './style.css'
 
+
+const Reducer = (state, action) => {
+  switch (action.type) {
+    case 'addUsers':
+      return { ...state, users: [...state.users, { id: action.id, name: action.name, email: action.email, phone: action.phone, city: action.city }] }
+
+    case 'deleteUsers':
+      return { ...state, users: state.users.filter((user) => user.id !== action.id) }
+
+    case 'editUsers':
+      return {
+        ...state, users: state.users.map((user) =>
+          user.id === action.id ? {...user, name: action.name, email: action.email, phone: action.phone, city: action.city } : user)
+      }
+
+    case 'addNewUser':
+      return { ...state, newUsers: action.user }
+
+    case 'loadUsers':
+      return { ...state, users: action.users.map(user => ({ id: user.id, name: user.name, email: user.email, phone: user.phone, city: user.city })) }
+  }
+
+}
+
 function App() {
-  const dialog = useRef(0)
-  const dialogEdit = useRef(0)
-  const [users, setUsers] = useState([])
-  const [newUsers,setNewUsers] = useState({})
+  const [state, dispatch] = useReducer(Reducer, {
+    users: [],
+    newUsers: {}
+  })
+
+  const dialog = useRef('')
+  const dialogEdit = useRef('')
 
   const btnRegister = () => {
     dialog.current.showModal()
   }
 
-  const addUser = (name, email, phone, city) => {
-    const newUser = [
-      ...users,
-      {
-        id: v4(),
-        name,
-        email,
-        phone,
-        city,
-      }
-    ]
-
-    setUsers(newUser)
+  const getUsers = async () => {
+    const userApi = await api.get('/users')
+    dispatch({ type: 'loadUsers', users: userApi.data })
   }
 
-  const btnDelete = (id)=>{
-    setUsers(users.filter(user => user.id !== id))
+  const createUsers = async (name, email, phone, city) => {
+    api.post('/users', {
+      name: name,
+      email: email,
+      phone: parseInt(phone),
+      city: city
+    })
+    getUsers()
   }
 
-  const addUserEdit = (user)=>{
-    setNewUsers(user)
+  const editUsers = async (id, name, email, phone, city) => {
+    await api.put(`/users/${id}`, {
+      name: name,
+      email: email,
+      phone: parseFloat(phone),
+      city: city
+    });
+    getUsers();
   }
 
-  const editUser = (name, email, phone, city) => {
-    setUsers(users.map(user => 
-      user.id === newUsers.id ? { ...user, name, email, phone, city } : user
-    ));
-  };
-  
+  const deleteUsers = async (id) => {
+    api.delete(`/users/${id}`)
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
 
   return (
 
@@ -60,39 +93,15 @@ function App() {
         </div>
 
         <div>
-
-          <table class="table table-hover mt-4">
-            <thead className='table-primary'>
-              <tr>
-                <th className='border-light border-0 border-end border border-3' scope="col">Nome</th>
-                <th className='border-light border-0 border-end border border-3 w-25'>Email</th>
-                <th className='border-light border-0 border-end border border-3' scope="col">Celular</th>
-                <th className='border-light border-0 border-end border border-3' scope="col">Cidade</th>
-                <th className='text-center border-0' scope="col">Ação</th>
-              </tr>
-            </thead>
-            {users.map(user =>
-              <Table key={user.id} 
-              user={user} 
-              exclused={btnDelete} 
-              edit={dialogEdit}
-              addUser={addUserEdit}
-              />
-            )}
-
-          </table>
-
+          <Table editUsers={editUsers} deleteUsers={deleteUsers} dialogEdit={dialogEdit} dispatch={dispatch} users={state.users} />
         </div>
 
-        <dialog className='position-absolute top-50 start-50 translate-middle w-75 h-50 border border-0 shadow' ref={dialog}>
-          <Dialog
-            dialog={dialog}
-            addUser={addUser}
-          />
+        <dialog ref={dialog} className='position-absolute top-50 start-50 translate-middle w-75 h-50 border border-0 shadow' >
+          <Dialog createUsers={createUsers} users={state.users} dispatch={dispatch} dialog={dialog} />
         </dialog>
 
-        <dialog className='position-absolute top-50 start-50 translate-middle w-75 h-50 border border-0 shadow' ref={dialogEdit}>
-            <DialogEdit dialogEdit={dialogEdit} addUser={addUserEdit} user={newUsers} editUser={editUser}/>
+        <dialog ref={dialogEdit} className='position-absolute top-50 start-50 translate-middle w-75 h-50 border border-0 shadow'>
+          <DialogEdit editUsers={editUsers}t newUser={state.newUsers} dispatch={dispatch} dialogEdit={dialogEdit} />
         </dialog>
 
       </div>
