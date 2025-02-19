@@ -15,7 +15,7 @@ function Home() {
   return (
     <div>
       <div>
-        <h1>Lista de Compra</h1>
+        <h1 className="bg-blue">Lista de Compra</h1>
         <p>
           <input type="text" ref={inputRef} />{" "}
           <button onClick={btnAdd} type="button">

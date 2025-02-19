@@ -1,3 +1,4 @@
+@import "tailwindcss";
 *{
   margin: 0;
   padding: 0;
@@ -13,3 +14,5 @@ body,html{
 .inputName , .inputEmail{
   width: 90%;
 }
+
+
