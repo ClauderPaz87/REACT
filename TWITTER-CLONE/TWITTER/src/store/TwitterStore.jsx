@@ -4,11 +4,11 @@ import { create } from "zustand";
 export const useTwitterStore = create((set) => ({
   users: [],
 
-  addUsers: (text, avatar, date, random) =>
+  addUsers: (text, avatar, date, random, teste) =>
     set((state) => ({
       users: [
         ...state.users,
-        { id: v4(), text, avatar, date, random, chat: 0, heart: 0 },
+        { id: v4(), text, avatar, date, random, chat: 0, heart: 0, teste },
       ],
     })),
   deleteUser: (id) =>
@@ -33,5 +33,24 @@ export const useTwitterStore = create((set) => ({
         user.id === id ? { ...user, heart: user.heart + 1 } : user
       ),
     })),
-
+  addRandomUsers: (text) =>
+    set((state) => ({
+      users: [
+        ...state.users,
+        {
+          id: v4(),
+          text,
+          avatar: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.random()
+            .toString(36)
+            .substring(7)}`,
+          date: new Date().toLocaleString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          random: Math.floor(Math.random() * 1000),
+          chat: 0,
+          heart: 0,
+        },
+      ],
+    })),
 }));

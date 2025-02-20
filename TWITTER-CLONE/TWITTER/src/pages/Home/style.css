@@ -5,3 +5,9 @@
 body{
    @apply bg-twitter-background
 }
+
+.inputSearch::placeholder{
+   position: absolute;
+   left: 33px;
+   top:5px;
+}

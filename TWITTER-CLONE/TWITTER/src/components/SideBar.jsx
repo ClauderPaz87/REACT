@@ -11,7 +11,7 @@ import { IoPersonOutline } from "react-icons/io5";
 const SideBar = () => {
 
   return (
-    <div className="grid justify-end border-r-2 h-screen border-twitter-dark-gray">
+    <div className="grid justify-end border-r-2 border-twitter-dark-gray">
         <nav className="text-white font-semibold flex flex-col mt-5 gap-6 mr-5">
             <GrTwitter className="text-twitter-blue mb-4" size={35}/>
             <p className="flex"><IoHomeOutline className="mr-4" size={20}/>Home</p>
