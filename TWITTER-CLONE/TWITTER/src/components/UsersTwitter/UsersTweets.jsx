@@ -3,11 +3,12 @@ import ButtonsUser from "./ButtonsUser";
 
 const UsersTweets = () => {
 
-  const {users} = useTwitterStore();    
+  const {users,search} = useTwitterStore();    
 
   return (
     <div className="">
       {users
+      .filter((user)=> user.text.toLowerCase().includes(search))
       .filter((user)=> user.text !== '')
       .map((user) => (
 

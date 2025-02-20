@@ -2,7 +2,8 @@ import './style.css'
 
 import SideBar from '../../components/SideBar'
 import Tweets from '../../components/FormsTwitter/FormsTweets'
-import ExtraTwitter from '../../components/ExtraTwitter'
+import ExtraTwitter from '../../components/InformationTwitter/ExtraTwitter'
+import RandomUsers from '../../components/FormsTwitter/RandomUsers'
 
 function App() {
  
@@ -11,6 +12,7 @@ function App() {
       <SideBar/>
       <Tweets/>
       <ExtraTwitter/>
+      <RandomUsers/>
     </div>
       
   )

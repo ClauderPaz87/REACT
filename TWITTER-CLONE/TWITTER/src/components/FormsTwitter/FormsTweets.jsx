@@ -1,36 +1,11 @@
 import UsersTweets from "../UsersTwitter/UsersTweets";
 import IconsForms from "./iconsForms";
-import { useEffect, useRef} from "react";
+import { useRef } from "react";
 import { useTwitterStore } from "../../store/TwitterStore";
 
 const FormsTweets = () => {
   const valueTweet = useRef("");
-  const {addUsers,addRandomUsers} = useTwitterStore()
-
-  const addRandomTweets = ()=>{
-    const randomTweets = [
-      'Acabei de encontrar o clone do twitter! Estou animado',
-      'Cobra Kai a melhor serie ja criada, com toda crtz',
-      'Mano, programação é muito difícil nao recomendo',
-      'Cara! nao passei no enem vou ter que refazer',
-      'QUE DROGA, BOLSOnARO VAI SER PRESO',
-      'HAHAHAHAHAHAHHAHAHAHA'
-
-    ]
-  
-    const mathRandom = randomTweets[Math.floor(Math.random()*randomTweets.length)]
-    addRandomUsers(mathRandom)
-  }
-  
-
-  useEffect(() => {
-   const interval = setInterval(()=>{
-    addRandomTweets()
-   },40000)
-   
-   return () => clearInterval(interval);
-  }, [])
-  
+  const {addUsers} = useTwitterStore()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,14 +21,10 @@ const FormsTweets = () => {
   return (
     <div className="grid-rows-2 border-e-2 border-twitter-dark-gray text-white">
 
-      <form
-        onSubmit={handleSubmit}
-        className="h-48 w-full mr-0 mt-3 justify-center border-b-2 border-twitter-dark-gray"
-      >
+      <form onSubmit={handleSubmit} className="h-48 w-full mr-0 mt-3 justify-center border-b-2 border-twitter-dark-gray">
+        
         <div>
-          
           <p className="font-semibold ml-3">For Your</p>
-
         </div>
 
         <div className="ml-3">
@@ -69,9 +40,7 @@ const FormsTweets = () => {
         <div className="h-8 relative mt-2">
           
           <div>
-
             <IconsForms/>
-      
           </div>
 
           <button

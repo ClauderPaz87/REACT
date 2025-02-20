@@ -3,12 +3,13 @@ import { create } from "zustand";
 
 export const useTwitterStore = create((set) => ({
   users: [],
+  search:"",
 
-  addUsers: (text, avatar, date, random, teste) =>
+  addUsers: (text, avatar, date, random,) =>
     set((state) => ({
       users: [
         ...state.users,
-        { id: v4(), text, avatar, date, random, chat: 0, heart: 0, teste },
+        { id: v4(), text, avatar, date, random, chat: 0, heart: 0, },
       ],
     })),
   deleteUser: (id) =>
@@ -52,5 +53,9 @@ export const useTwitterStore = create((set) => ({
           heart: 0,
         },
       ],
+    })),
+  searchUser: (random)=>
+    set((state)=>({
+      search: random
     })),
 }));
