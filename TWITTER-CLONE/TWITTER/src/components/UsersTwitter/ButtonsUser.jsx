@@ -10,12 +10,22 @@ const ButtonsUser = ({user}) => {
 
   const btnEdit = (id,text)=>{
     const newText = prompt("nova tarefa:", text)
+
+    if(newText === null){
+      alert('Edição cancelada') 
+      return
+    }
+    else if(!newText.trim()){
+      alert('Não pode deixar o campo vazio')
+      return
+    }
+
     editUser(id,newText)
 
   }
 
   return (
-    <div className="flex justify-between w-96 mt-6 ml-14 mb-2">
+    <div className="flex justify-between max-w-96 mt-6 mb-2 gap-3 sm:max-w-full ml-14">
       <button
         onClick={() => updateCountChat(user.id)}
         style={{ alignItems: "center" }}

@@ -11,7 +11,7 @@ const ExtraTwitter = () => {
   }
 
   return (
-    <div className="ml-3 mt-3 ">
+    <div className="ml-3 mt-3 hidden md:flex flex-col">
 
       <div className="relative">
         <input

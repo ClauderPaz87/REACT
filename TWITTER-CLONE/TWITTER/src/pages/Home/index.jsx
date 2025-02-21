@@ -8,9 +8,9 @@ import RandomUsers from '../../components/FormsTwitter/RandomUsers'
 function App() {
  
   return (
-    <div className='grid grid-cols-3'>
+    <div className='grid grid-cols-1 md:grid-cols-3'>
       <SideBar/>
-      <Tweets/>
+      <Tweets className=""/>
       <ExtraTwitter/>
       <RandomUsers/>
     </div>

@@ -1,6 +1,6 @@
 import UsersTweets from "../UsersTwitter/UsersTweets";
 import IconsForms from "./iconsForms";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTwitterStore } from "../../store/TwitterStore";
 
 const FormsTweets = () => {
@@ -9,19 +9,24 @@ const FormsTweets = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if(!valueTweet.current.value) return
+  
+    const randomImage =  `https://picsum.photos/200/300?random=${Math.random()}`
+    const random = Math.random() > 0.5 ? randomImage : null
+  
     const date = new Date().toLocaleString([], { hour:"2-digit", minute:"2-digit"})
     const seed = Math.random().toString(36).substring(7);
     const url = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${seed}`;
 
-    addUsers(valueTweet.current.value, url, date, Math.floor(Math.random() * 1000));
+    addUsers(valueTweet.current.value, url, date, Math.floor(Math.random() * 1000) , random, );
 
+    valueTweet.current.value = ''
   };
 
   return (
-    <div className="grid-rows-2 border-e-2 border-twitter-dark-gray text-white">
+    <div className="grid-rows-2 max-w-full border-t-2 mt-11 md:mt-0 border-e-2 border-slate-800 text-white">
 
-      <form onSubmit={handleSubmit} className="h-48 w-full mr-0 mt-3 justify-center border-b-2 border-twitter-dark-gray">
+      <form onSubmit={handleSubmit} className="h-48 w-full mr-0 mt-3 justify-center border-b-2 border-slate-800">
         
         <div>
           <p className="font-semibold ml-3">For Your</p>
@@ -37,14 +42,14 @@ const FormsTweets = () => {
 
         </div>
 
-        <div className="h-8 relative mt-2">
+        <div className=" h-8 relative mt-2 ">
           
           <div>
-            <IconsForms/>
+            <IconsForms valueT={valueTweet}/>
           </div>
 
           <button
-            className="w-24 mr-3 absolute right-0 bg-twitter-blue rounded-full p-1 font-semibold hover:bg-twitter-dark-gray"
+            className="w-24 mr-3 absolute right-0 top-1 md:top-1 md:left-70   bg-twitter-blue rounded-full p-1 font-semibold hover:bg-twitter-dark-gray"
             type="submit"
           >
             Tweet

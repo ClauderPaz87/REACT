@@ -3,16 +3,15 @@ import ButtonsUser from "./ButtonsUser";
 
 const UsersTweets = () => {
 
-  const {users,search} = useTwitterStore();    
-
+  const {users,search} = useTwitterStore();
+  
   return (
-    <div className="">
+    <div className="flex flex-col">
       {users
       .filter((user)=> user.text.toLowerCase().includes(search))
-      .filter((user)=> user.text !== '')
       .map((user) => (
 
-        <div key={user.id} className="border-b-2 border-twitter-dark-gray">
+        <div key={user.id} className="border-b-2 hover:bg-slate-800 border-slate-800">
 
           <div style={{alignItems:"center"}} className="flex">
 
@@ -24,11 +23,14 @@ const UsersTweets = () => {
 
           </div>
 
-          <div className="flex mt-2">
-
-            <p className="ml-16">{user.text}</p>
-
+          <div className="flex mt-2 w-full ">
+            <p className="ml-14 ">{user.text}</p>
           </div>
+
+          <div className="w-full max-h-56 ml-2 flex mt-4 justify-center">
+            <img className="rounded-xl shadow-sm w-40 sm:w-96 lg:w-72 md:w-60 xl:w-96 h-auto" src={user.image} alt="" />
+          </div>
+
 
           <div className=" mr-7 mt-3">
           
