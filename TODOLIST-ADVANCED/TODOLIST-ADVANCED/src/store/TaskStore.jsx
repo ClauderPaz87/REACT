@@ -26,7 +26,7 @@ export const useTaskStore = create((set) => ({
   editTask: (id, text, category) =>
     set((state) => ({
       tasks: state.tasks.map((task) =>
-        task.id === id ? { ...task,text: text, category: category } : task
+        task.id === id ? { ...task, text: text, category: category } : task
       ),
     })),
   selectType: (value) =>
