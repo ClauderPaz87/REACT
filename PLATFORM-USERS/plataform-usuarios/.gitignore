@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+node_modules/
+
+# Ignorar .next (pasta gerada pelo Next.js)
+.next/
+
 # next.js
 /.next/
 /out/
@@ -40,11 +45,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Ignore node_modules
-node_modules/
 
-# Ignore a pasta .next (gerada durante o build)
-.next/
 
 # Ignore arquivos de cache
 .next/cache/
