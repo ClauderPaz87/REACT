@@ -13,7 +13,7 @@ const Projects = () => {
 
       <div className="grid grid-cols-3 gap-8 px-44">
 
-        <div className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a href="https://spiffy-alpaca-3a137e.netlify.app/" className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={twitter} quality={100} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
@@ -23,9 +23,9 @@ const Projects = () => {
               Clone do twitter interativo e responsivo, com tweets gerados automaticamente.
             </p>
           </div>
-        </div>
+        </a>
 
-        <div className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a href="" className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={platform} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
@@ -35,9 +35,9 @@ const Projects = () => {
               Projeto de usuários com funcionalidades, e um formulário mais avançado.
             </p>
           </div>
-        </div>
+        </a>
 
-        <div className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={weather} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
@@ -49,7 +49,7 @@ const Projects = () => {
           </div>
         </div>
 
-      </div>
+      </a>
 
     </div>
   )

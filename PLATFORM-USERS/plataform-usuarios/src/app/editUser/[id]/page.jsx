@@ -1,11 +1,11 @@
 "use client";
-import { useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter, useParams } from "next/navigation";
 import { usePlatformUsers } from "@/store/PlatformUsers";
 import OptionsCountry from "@/components/MainUsers/OptionsCountry";
 
-const page = () => {
+const EditUser = () => {
   const router = useRouter();
   const params = useParams();
   const {
@@ -19,6 +19,7 @@ const page = () => {
     imageFile,
   } = usePlatformUsers();
 
+  // Busca os dados do usuário com base no ID da rota
   useEffect(() => {
     if (params.id) {
       setEditingUser(params.id);
@@ -61,6 +62,12 @@ const page = () => {
     router.push("/");
   };
 
+  // Se o usuário não for encontrado, redirecione para a página inicial
+  if (!editingUser) {
+    router.push("/");
+    return null;
+  }
+
   return (
     <div
       style={{ width: "60vw" }}
@@ -74,7 +81,7 @@ const page = () => {
         <div className="mt-2 pr-4">
           <p className="font-semibold pb-2">Nome</p>
           <input
-            defaultValue={editingUser.name}
+            defaultValue={editingUser.name} // Use os dados do usuário do estado global
             ref={inputName}
             className="outline-sky-600 border border-zinc-200 p-1 w-full"
             placeholder="Digite o nome do usuário"
@@ -113,7 +120,7 @@ const page = () => {
         <div className="mt-3 pr-4">
           <p className="font-semibold pb-2">Nascimento</p>
           <input
-            defaultValue={editingUser.date}
+            defaultValue={editingUser.date} // Use os dados do usuário do estado global
             ref={inputDate}
             className="outline-sky-600 border border-zinc-200 p-1 mt-2 w-full"
             type="date"
@@ -128,7 +135,7 @@ const page = () => {
         <div className="mt-3 pr-4">
           <p className="font-semibold pb-2">Email</p>
           <input
-            defaultValue={editingUser.email}
+            defaultValue={editingUser.email} // Use os dados do usuário do estado global
             ref={inputEmail}
             placeholder="Digite seu email"
             className="outline-sky-600 border border-zinc-200 p-1 w-full"
@@ -139,7 +146,7 @@ const page = () => {
         <div className="mt-3 pr-4">
           <p className="font-semibold pb-2">Senha</p>
           <input
-            defaultValue={editingUser.password}
+            defaultValue={editingUser.password} // Use os dados do usuário do estado global
             ref={inputPassword}
             placeholder="Digite sua senha"
             className="outline-sky-600 border border-zinc-200 p-1 w-full"
@@ -167,7 +174,7 @@ const page = () => {
           <button
             className="text-white bg-users-background-header ml-4 h-9 w-20 border border-x-users-logo-color rounded-md"
             type="button"
-            onClick={()=>{router.push("/")}}
+            onClick={() => { router.push("/"); }}
           >
             Cancelar
           </button>
@@ -177,4 +184,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default EditUser;
