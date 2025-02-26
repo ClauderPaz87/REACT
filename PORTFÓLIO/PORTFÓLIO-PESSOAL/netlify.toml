@@ -1,9 +1,13 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  functions = "netlify/functions"
+  functions = ".netlify/functions"
 
-[[redirects]]
-  from = "/_next/*"
-  to = "/.netlify/functions/render-next/_next/:splat"
-  status = 200
+[functions]
+  node_bundler = "esbuild"
+
+[dev]
+  framework = "#auto"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
