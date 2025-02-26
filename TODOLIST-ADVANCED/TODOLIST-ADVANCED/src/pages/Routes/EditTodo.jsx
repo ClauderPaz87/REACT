@@ -30,7 +30,7 @@ const EditTodo = () => {
 
   return (
     <div className="todo-form">
-      <h2>Editar tarefa:</h2>
+      <h2 style={{color:"white"}}>Editar tarefa:</h2>
       <form onSubmit={handleSubmit}>
         <input
           ref={inputEdit}
