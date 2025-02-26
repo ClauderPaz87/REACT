@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/_next/*"
+  to = "/.netlify/functions/render-next/_next/:splat"
+  status = 200
