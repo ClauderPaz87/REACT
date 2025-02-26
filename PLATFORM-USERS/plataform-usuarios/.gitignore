@@ -15,7 +15,6 @@
 
 node_modules/
 
-# Ignorar .next (pasta gerada pelo Next.js)
 .next/
 
 # next.js
