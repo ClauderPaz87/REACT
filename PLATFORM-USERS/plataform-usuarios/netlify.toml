@@ -8,3 +8,6 @@
 
 [dev]
   framework = "#auto"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
