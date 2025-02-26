@@ -2,6 +2,11 @@ import { useWeatherStore } from "../store/weatherStore";
 
 const ValuesCity = () => {
   const { weather } = useWeatherStore();
+  
+  if (!weather || !weather.data) {
+    return <p className="text-center">Carregando dados do clima...</p>;
+  }
+
   const src = `http://openweathermap.org/img/wn/${weather.data.weather[0].icon}.png`;
 
   return (
