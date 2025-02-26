@@ -25,7 +25,7 @@ const Projects = () => {
           </div>
         </a>
 
-        <a href="" className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={platform} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
@@ -37,7 +37,7 @@ const Projects = () => {
           </div>
         </a>
 
-        <a className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a href="https://bucolic-cat-fc600b.netlify.app/" className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={weather} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
@@ -47,9 +47,9 @@ const Projects = () => {
               App de tempo feito com consumo de api do openWeather.
             </p>
           </div>
-        </div>
+        </a>
 
-      </a>
+      </div>
 
     </div>
   )
