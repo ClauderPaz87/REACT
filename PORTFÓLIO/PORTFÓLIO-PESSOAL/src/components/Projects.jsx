@@ -25,7 +25,7 @@ const Projects = () => {
           </div>
         </a>
 
-        <a className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
+        <a href="https://plataformadeususarios.netlify.app/" className="hover:shadow-xl hover:shadow-shadowImage hover:-translate-y-3 hover:scale-105 transition-all ease-linear">
           <div>
             <Image src={platform} className="h-52 max-w-full object-cover rounded-t-xl"/>
           </div>
