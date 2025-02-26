@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore node_modules
+node_modules/
+
+# Ignore a pasta .next (gerada durante o build)
+.next/
+
+# Ignore arquivos de cache
+.next/cache/
+
+# Outros arquivos temporários ou de log
+*.log
+*.tmp
