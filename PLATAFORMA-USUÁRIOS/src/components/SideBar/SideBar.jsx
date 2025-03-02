@@ -10,7 +10,7 @@ const SideBar = () => {
         <div className="flex p-4">
            
             <div className="ml-4 relative">
-                <Image className="w-11 h-11 rounded-full absolute right-24 mr-4" src={avatar5} alt="Imagem padrão"/>
+                <Image className="w-11 h-11 rounded-full absolute right-24 mr-6" src={avatar5} alt="Imagem padrão"/>
                 <p className="text-white font-semibold ml-6">Usuário Junior</p>
                 <p className="text-green-700 ml-5 flex items-center mt-1"><TbPointFilled size={20}/>
                 <span className="text-white font-medium text-xs ">Online</span>

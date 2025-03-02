@@ -19,7 +19,6 @@ const EditUser = () => {
     imageFile,
   } = usePlatformUsers();
 
-  // Busca os dados do usuário com base no ID da rota
   useEffect(() => {
     if (params.id) {
       setEditingUser(params.id);
@@ -62,7 +61,6 @@ const EditUser = () => {
     router.push("/");
   };
 
-  // Se o usuário não for encontrado, redirecione para a página inicial
   if (!editingUser) {
     router.push("/");
     return null;
