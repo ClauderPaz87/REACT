@@ -1,5 +1,5 @@
 import UsersTweets from "../UsersTwitter/UsersTweets.jsx";
-import IconsForms from "./IconsForms.jsx";
+import iconsForms from "../FormsTwitter/iconsForms.jsx"
 import { useEffect, useRef } from "react";
 import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
@@ -45,7 +45,7 @@ const FormsTweets = () => {
         <div className=" h-8 relative mt-2 ">
           
           <div>
-            <IconsForms valueT={valueTweet}/>
+            <iconsForms valueT={valueTweet}/>
           </div>
 
           <button
