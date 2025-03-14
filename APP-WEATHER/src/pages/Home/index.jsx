@@ -2,7 +2,7 @@ import "./style.css";
 import ValuesCity from "../../components/ValuesCity";
 import ValuesCityDay from "../../components/ValuesCityDay";
 import { useRef } from "react";
-import { useWeatherStore } from "../../../store/weatherStore";
+import { useWeatherStore } from "../../store/weatherStore";
 import axios from "axios";
 
 function App() {
