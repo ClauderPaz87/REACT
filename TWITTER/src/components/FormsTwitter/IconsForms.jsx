@@ -6,7 +6,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
-const iconsForms = ({valueT}) => {
+const IconsForms = ({valueT}) => {
   
   const {smile,anger}= useTwitterStore()
 
@@ -43,4 +43,4 @@ const iconsForms = ({valueT}) => {
 
 };
 
-export default iconsForms;
+export default IconsForms;

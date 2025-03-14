@@ -1,5 +1,5 @@
 import UsersTweets from "../UsersTwitter/UsersTweets.jsx";
-import IconsForms from "./iconsForms.jsx"
+import IconsForms from "./IconsForms.jsx"
 import { useEffect, useRef } from "react";
 import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
