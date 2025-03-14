@@ -1,4 +1,4 @@
-import { useWeatherStore } from "../store/weatherStore";
+import { useWeatherStore } from "../store/WeatherStore.jsx";
 
 const ValuesCityDay = () => {
   const { weatherDay } = useWeatherStore();
