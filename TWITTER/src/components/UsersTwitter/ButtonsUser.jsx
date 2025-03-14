@@ -3,7 +3,7 @@ import { RiChatDeleteLine } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { FaCloudArrowUp } from "react-icons/fa6";
-import { useTwitterStore } from "../../store/TwitterStore";
+import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
 const ButtonsUser = ({user}) => {
   const { updateCountChat , updateCountHeart , deleteUser , editUser } = useTwitterStore();

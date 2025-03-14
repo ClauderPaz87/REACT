@@ -1,7 +1,7 @@
 import { FaSearch } from "react-icons/fa";
-import EventsTwitter from "./EventsTwitter";
-import SubscribeTwitter from "./SubscribeTwitter";
-import { useTwitterStore } from "../../store/TwitterStore";
+import EventsTwitter from "./EventsTwitter.jsx";
+import SubscribeTwitter from "./SubscribeTwitter.jsx";
+import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
 const ExtraTwitter = () => {
   const {searchUser} = useTwitterStore()

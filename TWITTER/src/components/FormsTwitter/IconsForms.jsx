@@ -4,7 +4,7 @@ import { SlEmotsmile } from "react-icons/sl";
 import { RiEmotionUnhappyLine } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { useTwitterStore } from "../../store/TwitterStore";
+import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
 const IconsForms = ({valueT}) => {
   

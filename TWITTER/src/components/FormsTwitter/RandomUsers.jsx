@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTwitterStore } from "../../store/TwitterStore";
+import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
 const RandomUsers = () => {
   const { addRandomUsers } = useTwitterStore();

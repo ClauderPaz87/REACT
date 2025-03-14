@@ -1,9 +1,9 @@
 import './style.css'
 
-import SideBar from '../../components/SideBar'
-import Tweets from '../../components/FormsTwitter/FormsTweets'
-import ExtraTwitter from '../../components/InformationTwitter/ExtraTwitter'
-import RandomUsers from '../../components/FormsTwitter/RandomUsers'
+import SideBar from '../../components/SideBar.jsx'
+import Tweets from '../../components/FormsTwitter/FormsTweets.jsx'
+import ExtraTwitter from '../../components/InformationTwitter/ExtraTwitter.jsx'
+import RandomUsers from '../../components/FormsTwitter/RandomUsers.jsx'
 
 function App() {
  

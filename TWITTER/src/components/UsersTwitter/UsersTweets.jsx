@@ -1,5 +1,5 @@
-import { useTwitterStore } from "../../store/TwitterStore";
-import ButtonsUser from "./ButtonsUser";
+import { useTwitterStore } from "../../store/TwitterStore.jsx";
+import ButtonsUser from "./ButtonsUser.jsx";
 
 const UsersTweets = () => {
 
