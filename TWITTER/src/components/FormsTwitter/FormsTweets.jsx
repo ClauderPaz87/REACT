@@ -1,6 +1,6 @@
 import UsersTweets from "../UsersTwitter/UsersTweets.jsx";
 import IconsForms from "../FormsTwitter/IconsForms.jsx"
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useTwitterStore } from "../../store/TwitterStore.jsx";
 
 const FormsTweets = () => {
