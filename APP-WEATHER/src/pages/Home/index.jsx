@@ -1,5 +1,5 @@
 import "./style.css";
-import ValuesCity from "../../components/valuesCity";
+import ValuesCity from "../../components/ValuesCity";
 import ValuesCityDay from "../../components/ValuesCityDay";
 import { useRef } from "react";
 import { useWeatherStore } from "../../store/weatherStore";
